@@ -27,6 +27,7 @@
 
     <modules>
         <module>domain</module>
+        <module>usecases</module>
         <module>infrastructure</module>
         <module>boot</module>
     </modules>

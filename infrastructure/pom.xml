@@ -16,7 +16,7 @@
 
         <dependency>
             <groupId>org.ivangrod</groupId>
-            <artifactId>rssclean-domain</artifactId>
+            <artifactId>rssclean-usecases</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
 

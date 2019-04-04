@@ -15,6 +15,9 @@ public class ItemStatusSubscriber implements DomainEventSubscriber {
 
     @Override
     public void process(DomainEvent domainEvent) {
+
+        // TODO REFACTOR - https://dzone.com/articles/instanceof-considered-harmful
+
         if (domainEvent instanceof CollectedItem) {
             process((CollectedItem) domainEvent);
         }
