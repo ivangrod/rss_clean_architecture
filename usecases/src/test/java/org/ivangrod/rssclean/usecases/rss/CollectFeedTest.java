@@ -5,13 +5,12 @@ import org.ivangrod.rssclean.domain.events.DomainEventPublisher;
 import org.ivangrod.rssclean.domain.model.item.Feed;
 import org.ivangrod.rssclean.domain.model.item.FeedListener;
 import org.ivangrod.rssclean.domain.model.item.Item;
-import org.ivangrod.rssclean.domain.usecases.rss.params.CollectingFeedParams;
+import org.ivangrod.rssclean.usecases.rss.params.CollectingFeedParams;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.Instant;

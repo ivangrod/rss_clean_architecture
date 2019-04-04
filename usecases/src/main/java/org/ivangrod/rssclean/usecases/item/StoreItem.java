@@ -1,4 +1,4 @@
-package org.ivangrod.rssclean.domain.usecases.item;
+package org.ivangrod.rssclean.usecases.item;
 
 //public class StoreItem extends WriteModel implements UseCase<StoringItemParams> {
 //

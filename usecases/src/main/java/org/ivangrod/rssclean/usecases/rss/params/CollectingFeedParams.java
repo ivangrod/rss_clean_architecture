@@ -2,7 +2,7 @@ package org.ivangrod.rssclean.usecases.rss.params;
 
 import org.ivangrod.rssclean.domain.exceptions.InstanceValidationException;
 import org.ivangrod.rssclean.domain.model.item.Feed;
-import org.ivangrod.rssclean.domain.usecases.UseCaseParams;
+import org.ivangrod.rssclean.usecases.UseCaseParams;
 
 import java.net.MalformedURLException;
 import java.net.URL;

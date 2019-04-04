@@ -1,7 +1,7 @@
 package org.ivangrod.rssclean.usecases.item.params;
 
 import org.ivangrod.rssclean.domain.model.item.Item;
-import org.ivangrod.rssclean.domain.usecases.UseCaseParams;
+import org.ivangrod.rssclean.usecases.UseCaseParams;
 
 import java.util.Objects;
 

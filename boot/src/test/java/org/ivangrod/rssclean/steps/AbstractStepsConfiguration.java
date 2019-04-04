@@ -7,7 +7,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 @ContextConfiguration(classes = Application.class, loader = SpringBootContextLoader.class)
-@WebAppConfiguration
 @ActiveProfiles("test")
 public class AbstractStepsConfiguration {
 

@@ -11,4 +11,5 @@ import org.junit.runner.RunWith;
         "~@suggester"}, features = "classpath:features", snippets = SnippetType.CAMELCASE)
 public class CucumberRunnerTestIT {
 
+
 }

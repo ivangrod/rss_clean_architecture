@@ -6,8 +6,8 @@ import org.ivangrod.rssclean.domain.exceptions.EntityAlreadyExistsException;
 import org.ivangrod.rssclean.domain.model.item.Item;
 import org.ivangrod.rssclean.domain.model.item.ItemCollection;
 import org.ivangrod.rssclean.domain.model.item.events.CreatedItem;
-import org.ivangrod.rssclean.domain.usecases.UseCase;
-import org.ivangrod.rssclean.domain.usecases.item.params.CreatingItemParams;
+import org.ivangrod.rssclean.usecases.UseCase;
+import org.ivangrod.rssclean.usecases.item.params.CreatingItemParams;
 
 public class CreateItem implements UseCase<CreatingItemParams> {
 

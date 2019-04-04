@@ -6,6 +6,9 @@ import org.ivangrod.rssclean.infrastructure.repositories.mapper.ItemMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 @Repository
 public class MongoDBItemCollection implements ItemCollection {
 
@@ -15,5 +18,13 @@ public class MongoDBItemCollection implements ItemCollection {
     @Override
     public Item create(Item item) {
         return ItemMapper.documentToEntity(itemDocumentRepository.save(ItemMapper.entityToDocument(item)));
+    }
+
+    @Override
+    public Set<Item> readAll() {
+        return itemDocumentRepository.findAll()
+                .stream()
+                .map(itemDocument -> ItemMapper.documentToEntity(itemDocument))
+                .collect(Collectors.toSet());
     }
 }

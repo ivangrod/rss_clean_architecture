@@ -3,5 +3,5 @@ Feature: Collect Feed
 
   Scenario: Collect new information from an RSS feed
     Given an URI related with an external RSS feed
-    When the collecting process is init
+    When the collecting process is fired up
     Then the created items are stored

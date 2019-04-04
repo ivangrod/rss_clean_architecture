@@ -206,4 +206,7 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 
+### Mongo ###
+composer/data/
+
 # End of https://www.gitignore.io/api/java,linux,maven,eclipse,intellij
