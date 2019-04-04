@@ -1,4 +1,4 @@
-package org.ivangrod.rssclean.domain.usecases;
+package org.ivangrod.rssclean.usecases;
 
 public interface UseCaseParams {
 

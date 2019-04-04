@@ -1,4 +1,4 @@
-package org.ivangrod.rssclean.domain.usecases.rss.params;
+package org.ivangrod.rssclean.usecases.rss.params;
 
 import org.ivangrod.rssclean.domain.exceptions.InstanceValidationException;
 import org.ivangrod.rssclean.domain.model.item.Feed;

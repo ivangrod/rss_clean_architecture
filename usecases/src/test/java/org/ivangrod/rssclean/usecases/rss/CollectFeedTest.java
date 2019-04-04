@@ -1,4 +1,4 @@
-package org.ivangrod.rssclean.domain.usecases.rss;
+package org.ivangrod.rssclean.usecases.rss;
 
 import org.ivangrod.rssclean.domain.events.DomainEvent;
 import org.ivangrod.rssclean.domain.events.DomainEventPublisher;

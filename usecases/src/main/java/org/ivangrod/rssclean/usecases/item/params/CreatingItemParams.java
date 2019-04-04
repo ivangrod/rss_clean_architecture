@@ -1,4 +1,4 @@
-package org.ivangrod.rssclean.domain.usecases.item.params;
+package org.ivangrod.rssclean.usecases.item.params;
 
 import org.ivangrod.rssclean.domain.model.item.Item;
 import org.ivangrod.rssclean.domain.usecases.UseCaseParams;
