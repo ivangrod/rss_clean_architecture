@@ -1,6 +1,6 @@
 package org.ivangrod.rssclean.usecases.rss.params;
 
-import org.ivangrod.rssclean.domain.exceptions.InstanceValidationException;
+import org.ivangrod.rssclean.domain.exceptions.EntityValidationException;
 import org.ivangrod.rssclean.domain.model.post.Feed;
 import org.ivangrod.rssclean.usecases.UseCaseParams;
 
@@ -34,7 +34,7 @@ public class CollectingFeedParams implements UseCaseParams {
         try {
             return new Feed(new URL(url), source);
         } catch (MalformedURLException e) {
-            throw new InstanceValidationException("Feed couldn't be created");
+            throw new EntityValidationException("Feed couldn't be created");
         }
     }
 }

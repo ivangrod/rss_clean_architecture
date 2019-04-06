@@ -1,19 +1,19 @@
 package org.ivangrod.rssclean.domain.exceptions;
 
-public class InstanceValidationException extends BusinessException {
+public class EntityValidationException extends BusinessException {
 
     private static final long serialVersionUID = 1L;
     protected Object instance;
 
-    public InstanceValidationException(String message) {
+    public EntityValidationException(String message) {
         super(message);
     }
 
-    public InstanceValidationException(String message, Throwable cause) {
+    public EntityValidationException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public InstanceValidationException(String message, Object instance) {
+    public EntityValidationException(String message, Object instance) {
         super(message);
         this.instance = instance;
     }

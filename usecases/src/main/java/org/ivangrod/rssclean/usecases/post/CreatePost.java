@@ -1,7 +1,7 @@
 package org.ivangrod.rssclean.usecases.post;
 
 import org.ivangrod.rssclean.domain.events.DomainEventPublisher;
-import org.ivangrod.rssclean.domain.exceptions.DuplicateInstanceException;
+import org.ivangrod.rssclean.domain.exceptions.DuplicateEntityException;
 import org.ivangrod.rssclean.domain.exceptions.EntityAlreadyExistsException;
 import org.ivangrod.rssclean.domain.model.post.Post;
 import org.ivangrod.rssclean.domain.model.post.PostCollection;
@@ -27,7 +27,7 @@ public class CreatePost implements UseCase<CreatingPostParams> {
             post = postCollection.create(post);
             domainEventPublisher.publish(new CreatedPost(post));
         } catch (EntityAlreadyExistsException exception) {
-            throw new DuplicateInstanceException(String.format("The post [%s] already exists", post.getTitle()),
+            throw new DuplicateEntityException(String.format("The post [%s] already exists", post.getTitle()),
                     exception);
         }
 

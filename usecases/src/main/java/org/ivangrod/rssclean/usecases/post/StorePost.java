@@ -17,7 +17,7 @@ package org.ivangrod.rssclean.usecases.post;
 //            post = postRepository.create(post);
 //            domainEventPublisher.publish(new StoredPost(params.triggeredBy(), post));
 //        } catch (EntityAlreadyExistsException exception) {
-//            throw new DuplicateInstanceException(String.format("The post [%s] already exists", post.getTitle()),
+//            throw new DuplicateEntityException(String.format("The post [%s] already exists", post.getTitle()),
 //                    exception);
 //        }
 //
