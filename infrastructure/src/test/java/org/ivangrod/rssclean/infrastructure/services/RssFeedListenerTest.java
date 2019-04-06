@@ -36,13 +36,12 @@ public class RssFeedListenerTest {
         Feed feed = new Feed(URI_FEED, URI_ORIGIN);
 
         // when
-        final Optional<List<Item>> itemsCollected = feedListener.extract(feed);
+        final List<Item> itemsCollected = feedListener.extract(feed);
 
         // then
-        assertTrue(itemsCollected.isPresent());
-        assertTrue(itemsCollected.get().size() > 0);
-        assertTrue(itemsCollected.get()
-                .stream()
+        assertTrue(itemsCollected != null);
+        assertTrue(itemsCollected.size() > 0);
+        assertTrue(itemsCollected.stream()
                 .filter(item -> !item.getOrigin()
                         .getSource()
                         .equals(URI_ORIGIN))

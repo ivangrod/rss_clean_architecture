@@ -5,5 +5,5 @@ import java.util.Optional;
 
 public interface FeedListener {
 
-    Optional<List<Item>> extract(Feed feed);
+    List<Item> extract(Feed feed);
 }

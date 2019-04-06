@@ -16,7 +16,6 @@ import java.sql.Date;
 import java.time.Instant;
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.Assert.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
@@ -49,7 +48,7 @@ public class CollectFeedTest {
                 .createItem();
         List<Item> itemsCollectedForTest = Collections.singletonList(itemForTest);
 
-        given(feedListener.extract(feed)).willReturn(Optional.ofNullable(itemsCollectedForTest));
+        given(feedListener.extract(feed)).willReturn(itemsCollectedForTest);
 
         // when
         final List<Item> itemsCollected = collectFeed.execute(new CollectingFeedParams(feed.getSource(), feed.getUri()

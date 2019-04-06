@@ -1,5 +1,6 @@
 package org.ivangrod.rssclean.steps;
 
+import com.google.common.io.Resources;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import cucumber.api.java.en.Given;
@@ -47,14 +48,14 @@ public class CollectFeedSteps extends AbstractStepsConfiguration {
 
     @Given("^an URI related with an external RSS feed$")
     public void anURIRelatedWithAnExternalRSSFeed() throws Throwable {
-        world.setSource(new Feed(new URL("https://medium.com/feed/netflix-techblog"), "Netflix"));
+        world.setFeed(new MockFeed("xml/netflix-techblog.xml", "Netflix"));
         setUp();
     }
 
     @When("^the collecting process is fired up$")
     public void theCollectingProcessIsFfiredUp() {
-        List<Item> itemsCollected = (List<Item>) collectFeed.execute(new CollectingFeedParams(world.getSource()
-                .getSource(), world.getSource()
+        List<Item> itemsCollected = (List<Item>) collectFeed.execute(new CollectingFeedParams(world.getFeed()
+                .getSource(), world.getFeed()
                 .getUri()
                 .toString()));
         world.setItemsCollected(itemsCollected);
@@ -69,14 +70,16 @@ public class CollectFeedSteps extends AbstractStepsConfiguration {
 
     private void setUp() throws Throwable {
         clean();
-        ReflectionTestUtils.setField(feedListener, "input", feedInput);
-        given(feedInput.build(any(XmlReader.class)))
-                .willReturn(NetflixFeedProvider.getFeed(world.getSource()
-                        .getUri()
-                        .toString()));
     }
 
     private void clean() {
         mongoDBItemRepository.deleteAll();
+    }
+
+    class MockFeed extends Feed {
+
+        public MockFeed(String fileName, String source) {
+            super(Resources.getResource(fileName), source);
+        }
     }
 }
