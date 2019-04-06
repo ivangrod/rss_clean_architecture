@@ -1,9 +1,9 @@
 package org.ivangrod.rssclean.infrastructure.converter;
 
 import com.rometools.rome.feed.synd.SyndEntry;
-import org.ivangrod.rssclean.domain.model.item.Feed;
-import org.ivangrod.rssclean.domain.model.item.Item;
-import org.ivangrod.rssclean.domain.model.item.Topic;
+import org.ivangrod.rssclean.domain.model.post.Feed;
+import org.ivangrod.rssclean.domain.model.post.Post;
+import org.ivangrod.rssclean.domain.model.post.Topic;
 import org.springframework.util.CollectionUtils;
 
 import java.time.Instant;
@@ -12,32 +12,32 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public final class FeedEntryToItem {
+public final class FeedEntryToPost {
 
-    private FeedEntryToItem() {
+    private FeedEntryToPost() {
         throw new IllegalStateException("Private access to constructor");
     }
 
-    public static Item convertFeedEntryToItem(final Feed origin, final SyndEntry entry) {
+    public static Post convertFeedEntryToPost(final Feed origin, final SyndEntry entry) {
 
-        Item.ItemBuilder itemBuilder = new Item.ItemBuilder();
+        Post.PostBuilder postBuilder = new Post.PostBuilder();
 
-        itemBuilder.withTitle(entry.getTitle()).withUri(entry.getLink()).withCreator(entry.getAuthor()).withOrigin(origin);
-        itemBuilder.withPublicationAt(Optional.ofNullable(entry.getPublishedDate()).orElse(entry.getUpdatedDate()));
-        itemBuilder.withCollectAt(Date.from(Instant.now()));
+        postBuilder.withTitle(entry.getTitle()).withUri(entry.getLink()).withCreator(entry.getAuthor()).withOrigin(origin);
+        postBuilder.withPublicationAt(Optional.ofNullable(entry.getPublishedDate()).orElse(entry.getUpdatedDate()));
+        postBuilder.withCollectAt(Date.from(Instant.now()));
 
         if (!CollectionUtils.isEmpty(entry.getContents())) {
             StringBuilder strBuilder = new StringBuilder();
             entry.getContents().forEach(content -> strBuilder.append(content.getValue()));
-            itemBuilder.withContent(strBuilder.toString());
+            postBuilder.withContent(strBuilder.toString());
         }
 
         if (!CollectionUtils.isEmpty(entry.getCategories())) {
             Set<Topic> topics = entry.getCategories().stream().map(syndCategory -> new Topic(syndCategory.getName()))
                     .collect(Collectors.toSet());
-            itemBuilder.withTopics(topics);
+            postBuilder.withTopics(topics);
         }
 
-        return itemBuilder.createItem();
+        return postBuilder.createPost();
     }
 }

@@ -1,10 +1,10 @@
-package org.ivangrod.rssclean.domain.model.item;
+package org.ivangrod.rssclean.domain.model.post;
 
 import java.net.URL;
 import java.util.Objects;
 
 /**
- * Entity (part of Item aggregate)
+ * Entity (part of Post aggregate)
  */
 public class Feed {
 

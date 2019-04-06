@@ -1,15 +1,15 @@
 package org.ivangrod.rssclean.infrastructure.repositories.entities;
 
-import org.ivangrod.rssclean.domain.model.item.Feed;
-import org.ivangrod.rssclean.domain.model.item.Topic;
+import org.ivangrod.rssclean.domain.model.post.Feed;
+import org.ivangrod.rssclean.domain.model.post.Topic;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
 import java.util.Set;
 
-@Document(value = "item")
-public class ItemDocument {
+@Document(value = "post")
+public class PostDocument {
 
     @Id
     public String id;
@@ -32,10 +32,10 @@ public class ItemDocument {
 
     private Set<Topic> topics;
 
-    public ItemDocument() {
+    public PostDocument() {
     }
 
-    public ItemDocument(String id, String title, String uri, String creator, Feed origin, String content, Date collectAt, Date publicationAt, Set<Topic> topics) {
+    public PostDocument(String id, String title, String uri, String creator, Feed origin, String content, Date collectAt, Date publicationAt, Set<Topic> topics) {
         this.id = id;
         this.title = title;
         this.uri = uri;
@@ -121,7 +121,7 @@ public class ItemDocument {
 
     @Override
     public String toString() {
-        return "ItemDocument{" +
+        return "PostDocument{" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", uri='" + uri + '\'' +

@@ -2,29 +2,22 @@ package org.ivangrod.rssclean.steps;
 
 import com.google.common.io.Resources;
 import com.rometools.rome.io.SyndFeedInput;
-import com.rometools.rome.io.XmlReader;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
-import org.ivangrod.rssclean.domain.model.item.Feed;
-import org.ivangrod.rssclean.domain.model.item.FeedListener;
-import org.ivangrod.rssclean.domain.model.item.Item;
-import org.ivangrod.rssclean.domain.model.item.ItemCollection;
-import org.ivangrod.rssclean.helpers.NetflixFeedProvider;
+import org.ivangrod.rssclean.domain.model.post.Feed;
+import org.ivangrod.rssclean.domain.model.post.FeedListener;
+import org.ivangrod.rssclean.domain.model.post.Post;
+import org.ivangrod.rssclean.domain.model.post.PostCollection;
 import org.ivangrod.rssclean.helpers.World;
-import org.ivangrod.rssclean.infrastructure.repositories.MongoDBItemDocumentRepository;
+import org.ivangrod.rssclean.infrastructure.repositories.MongoDBPostDocumentRepository;
 import org.ivangrod.rssclean.usecases.UseCase;
 import org.ivangrod.rssclean.usecases.rss.params.CollectingFeedParams;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.util.ReflectionTestUtils;
 
-import java.net.URL;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 
 public class CollectFeedSteps extends AbstractStepsConfiguration {
@@ -33,10 +26,10 @@ public class CollectFeedSteps extends AbstractStepsConfiguration {
     private UseCase<CollectingFeedParams> collectFeed;
 
     @Autowired
-    private ItemCollection itemCollection;
+    private PostCollection postCollection;
 
     @Autowired
-    private MongoDBItemDocumentRepository mongoDBItemRepository;
+    private MongoDBPostDocumentRepository mongoDBPostRepository;
 
     @Autowired
     private FeedListener feedListener;
@@ -54,17 +47,17 @@ public class CollectFeedSteps extends AbstractStepsConfiguration {
 
     @When("^the collecting process is fired up$")
     public void theCollectingProcessIsFfiredUp() {
-        List<Item> itemsCollected = (List<Item>) collectFeed.execute(new CollectingFeedParams(world.getFeed()
+        List<Post> postsCollected = (List<Post>) collectFeed.execute(new CollectingFeedParams(world.getFeed()
                 .getSource(), world.getFeed()
                 .getUri()
                 .toString()));
-        world.setItemsCollected(itemsCollected);
+        world.setPostsCollected(postsCollected);
     }
 
-    @Then("^the created items are stored$")
-    public void theCreatedItemsAreStored() {
-        assertEquals(world.getItemsCollected()
-                .size(), itemCollection.readAll()
+    @Then("^the created posts are stored$")
+    public void theCreatedPostsAreStored() {
+        assertEquals(world.getPostsCollected()
+                .size(), postCollection.readAll()
                 .size());
     }
 
@@ -73,7 +66,7 @@ public class CollectFeedSteps extends AbstractStepsConfiguration {
     }
 
     private void clean() {
-        mongoDBItemRepository.deleteAll();
+        mongoDBPostRepository.deleteAll();
     }
 
     class MockFeed extends Feed {

@@ -1,7 +1,7 @@
 package org.ivangrod.rssclean.helpers;
 
-import org.ivangrod.rssclean.domain.model.item.Feed;
-import org.ivangrod.rssclean.domain.model.item.Item;
+import org.ivangrod.rssclean.domain.model.post.Feed;
+import org.ivangrod.rssclean.domain.model.post.Post;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,11 +12,11 @@ public class World {
 
     private Feed feed;
 
-    private List<Item> itemsCollected;
+    private List<Post> postsCollected;
 
     public void reset() {
         feed = null;
-        itemsCollected = new ArrayList<>();
+        postsCollected = new ArrayList<>();
     }
 
     public Feed getFeed() {
@@ -27,11 +27,11 @@ public class World {
         this.feed = feed;
     }
 
-    public void setItemsCollected(List<Item> itemsCollected) {
-        this.itemsCollected = itemsCollected;
+    public void setPostsCollected(List<Post> postsCollected) {
+        this.postsCollected = postsCollected;
     }
 
-    public List<Item> getItemsCollected() {
-        return itemsCollected;
+    public List<Post> getPostsCollected() {
+        return postsCollected;
     }
 }

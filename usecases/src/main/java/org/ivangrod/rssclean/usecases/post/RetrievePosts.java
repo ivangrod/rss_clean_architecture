@@ -1,20 +1,15 @@
-package org.ivangrod.rssclean.usecases.item;
+package org.ivangrod.rssclean.usecases.post;
 
-import org.ivangrod.rssclean.domain.model.item.Item;
-
-import java.util.List;
-import java.util.stream.Collectors;
-
-//public class RetrieveItems implements UseCase<RetrieveItemsParams> {
+//public class RetrievePosts implements UseCase<RetrievePostsParams> {
 //
-//    // TODO ItemCollection ¿?
-//    private final ItemCollection itemRepository;
+//    // TODO PostCollection ¿?
+//    private final PostCollection postRepository;
 //
-//    public RetrieveItems(ItemCollection itemRepository) {
-//        this.itemRepository = itemRepository;
+//    public RetrievePosts(PostCollection postRepository) {
+//        this.postRepository = postRepository;
 //    }
 //
-//    public Cursor<Item> execute(RetrieveItemsParams params) {
+//    public Cursor<Post> execute(RetrievePostsParams params) {
 //
 ////        if (CollectionUtils.isNotEmpty(params.getFilteredBy())) {
 ////            List<GroupFilterBy> groupFilterBy = toGroupFilterBy(params.getFilteredBy());
@@ -28,7 +23,7 @@ import java.util.stream.Collectors;
 //        //        criteria.sort(Sort.asc(GroupDbNaming.NAME + "_str"));
 //        //        criteria.limit(params.getFirst());
 //        //        criteria.nextCursorMark(params.getAfter());
-//        Cursor<Item> items = itemRepository.search(criteria);
+//        Cursor<Post> posts = postRepository.search(criteria);
 //
 //        List<String> ids =
 //                groups.getElements().stream().map(group -> group.getId()).collect(Collectors.toList());

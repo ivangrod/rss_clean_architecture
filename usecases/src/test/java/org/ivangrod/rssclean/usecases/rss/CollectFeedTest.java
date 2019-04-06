@@ -2,9 +2,9 @@ package org.ivangrod.rssclean.usecases.rss;
 
 import org.ivangrod.rssclean.domain.events.DomainEvent;
 import org.ivangrod.rssclean.domain.events.DomainEventPublisher;
-import org.ivangrod.rssclean.domain.model.item.Feed;
-import org.ivangrod.rssclean.domain.model.item.FeedListener;
-import org.ivangrod.rssclean.domain.model.item.Item;
+import org.ivangrod.rssclean.domain.model.post.Feed;
+import org.ivangrod.rssclean.domain.model.post.FeedListener;
+import org.ivangrod.rssclean.domain.model.post.Post;
 import org.ivangrod.rssclean.usecases.rss.params.CollectingFeedParams;
 import org.junit.Before;
 import org.junit.Test;
@@ -36,34 +36,34 @@ public class CollectFeedTest {
     }
 
     @Test
-    public void given_A_Feed_When_Content_Is_Extracted_Then_A_Collection_Of_Items_Is_Returned() throws Exception {
+    public void given_A_Feed_When_Content_Is_Extracted_Then_A_Collection_Of_Posts_Is_Returned() throws Exception {
         // given
         Feed feed = new Feed(new URL("https://medium.com/feed/netflix-techblog"), "Netflix");
 
-        Item itemForTest = new Item.ItemBuilder().withTitle("title")
+        Post postForTest = new Post.PostBuilder().withTitle("title")
                 .withUri("uri")
                 .withOrigin(feed)
                 .withContent("content")
                 .withCollectAt(Date.from(Instant.now()))
-                .createItem();
-        List<Item> itemsCollectedForTest = Collections.singletonList(itemForTest);
+                .createPost();
+        List<Post> postsCollectedForTest = Collections.singletonList(postForTest);
 
-        given(feedListener.extract(feed)).willReturn(itemsCollectedForTest);
+        given(feedListener.extract(feed)).willReturn(postsCollectedForTest);
 
         // when
-        final List<Item> itemsCollected = collectFeed.execute(new CollectingFeedParams(feed.getSource(), feed.getUri()
+        final List<Post> postsCollected = collectFeed.execute(new CollectingFeedParams(feed.getSource(), feed.getUri()
                 .toString()));
 
         // then
-        assertTrue(itemsCollected != null);
-        assertTrue(itemsCollected.size() > 0);
-        assertTrue(itemsCollected.stream()
-                .filter(item -> !item.getOrigin()
+        assertTrue(postsCollected != null);
+        assertTrue(postsCollected.size() > 0);
+        assertTrue(postsCollected.stream()
+                .filter(post -> !post.getOrigin()
                         .getSource()
                         .equals("Netflix"))
                 .count() == 0);
 
-        verify(domainEventPublisher, times(itemsCollected.size()))
+        verify(domainEventPublisher, times(postsCollected.size()))
                 .publish(any(DomainEvent.class));
     }
 }

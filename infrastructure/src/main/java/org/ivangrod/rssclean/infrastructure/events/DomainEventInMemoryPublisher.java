@@ -3,7 +3,7 @@ package org.ivangrod.rssclean.infrastructure.events;
 import org.ivangrod.rssclean.domain.events.DomainEvent;
 import org.ivangrod.rssclean.domain.events.DomainEventPublisher;
 import org.ivangrod.rssclean.domain.events.DomainEventSubscriber;
-import org.ivangrod.rssclean.infrastructure.events.subscribers.ItemStatusSubscriber;
+import org.ivangrod.rssclean.infrastructure.events.subscribers.PostStatusSubscriber;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ public class DomainEventInMemoryPublisher implements DomainEventPublisher {
     private static final Logger LOG = LoggerFactory.getLogger(DomainEventInMemoryPublisher.class);
 
     @Autowired
-    private ItemStatusSubscriber itemStatusSubscriber;
+    private PostStatusSubscriber postStatusSubscriber;
 
     private List<DomainEventSubscriber> subscribers;
 
@@ -29,7 +29,7 @@ public class DomainEventInMemoryPublisher implements DomainEventPublisher {
 
     @PostConstruct
     public void init() {
-        addSubscriber(itemStatusSubscriber);
+        addSubscriber(postStatusSubscriber);
     }
 
     @Override

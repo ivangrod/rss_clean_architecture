@@ -1,13 +1,13 @@
 package org.ivangrod.rssclean.infrastructure.repositories.mapper;
 
-import org.ivangrod.rssclean.domain.model.item.Item;
-import org.ivangrod.rssclean.infrastructure.repositories.entities.ItemDocument;
+import org.ivangrod.rssclean.domain.model.post.Post;
+import org.ivangrod.rssclean.infrastructure.repositories.entities.PostDocument;
 
-public final class ItemMapper {
+public final class PostMapper {
 
-    public static Item documentToEntity(final ItemDocument document) {
+    public static Post documentToEntity(final PostDocument document) {
 
-        Item.ItemBuilder builder = new Item.ItemBuilder();
+        Post.PostBuilder builder = new Post.PostBuilder();
         builder.withTitle(document.getTitle())
                 .withUri(document.getUri())
                 .withOrigin(document.getOrigin())
@@ -17,14 +17,14 @@ public final class ItemMapper {
                 .withCreator(document.getCreator())
                 .withTopics(document.getTopics());
 
-        Item newItem = builder.createItem();
-        newItem.setId(document.getId());
+        Post newPost = builder.createPost();
+        newPost.setId(document.getId());
 
-        return newItem;
+        return newPost;
     }
 
-    public static ItemDocument entityToDocument(final Item entity) {
-        return new ItemDocument(entity.getId(), entity.getTitle(), entity.getUri(),
+    public static PostDocument entityToDocument(final Post entity) {
+        return new PostDocument(entity.getId(), entity.getTitle(), entity.getUri(),
                 entity.getCreator(), entity.getOrigin(), entity.getContent(), entity.getCollectAt(),
                 entity.getPublicationAt(), entity.getTopics());
     }

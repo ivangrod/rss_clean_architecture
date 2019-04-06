@@ -1,7 +1,7 @@
 package org.ivangrod.rssclean.infrastructure.services;
 
-import org.ivangrod.rssclean.domain.model.item.Feed;
-import org.ivangrod.rssclean.domain.model.item.Item;
+import org.ivangrod.rssclean.domain.model.post.Feed;
+import org.ivangrod.rssclean.domain.model.post.Post;
 import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
-import java.util.Optional;
 
 import static org.junit.Assert.assertTrue;
 
@@ -31,18 +30,18 @@ public class RssFeedListenerTest {
     RssFeedListener feedListener = new RssFeedListener();
 
     @Test
-    public void given_A_Feed_When_Content_Is_Extracted_Then_A_Collection_Of_Items_Is_Returned() {
+    public void given_A_Feed_When_Content_Is_Extracted_Then_A_Collection_Of_Posts_Is_Returned() {
         // given
         Feed feed = new Feed(URI_FEED, URI_ORIGIN);
 
         // when
-        final List<Item> itemsCollected = feedListener.extract(feed);
+        final List<Post> postsCollected = feedListener.extract(feed);
 
         // then
-        assertTrue(itemsCollected != null);
-        assertTrue(itemsCollected.size() > 0);
-        assertTrue(itemsCollected.stream()
-                .filter(item -> !item.getOrigin()
+        assertTrue(postsCollected != null);
+        assertTrue(postsCollected.size() > 0);
+        assertTrue(postsCollected.stream()
+                .filter(post -> !post.getOrigin()
                         .getSource()
                         .equals(URI_ORIGIN))
                 .count() == 0);

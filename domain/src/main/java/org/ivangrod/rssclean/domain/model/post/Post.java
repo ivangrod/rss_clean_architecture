@@ -1,4 +1,4 @@
-package org.ivangrod.rssclean.domain.model.item;
+package org.ivangrod.rssclean.domain.model.post;
 
 import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
@@ -6,12 +6,11 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Set;
-import java.util.logging.Logger;
 
 /**
  * Aggregate Root
  */
-public class Item implements Cloneable {
+public class Post implements Cloneable {
 
     private String id;
 
@@ -33,10 +32,10 @@ public class Item implements Cloneable {
 
     private Set<Topic> topics;
 
-    public Item() {
+    public Post() {
     }
 
-    private Item(String id, String title, String uri, String creator, Feed origin, String content, Date collectAt, Date publicationAt, Set<Topic> topics) {
+    private Post(String id, String title, String uri, String creator, Feed origin, String content, Date collectAt, Date publicationAt, Set<Topic> topics) {
         this.generatedId = generateId(uri);
         this.title = title;
         this.uri = uri;
@@ -128,15 +127,15 @@ public class Item implements Cloneable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Item item = (Item) o;
-        return Objects.equals(title, item.title) &&
-                Objects.equals(uri, item.uri) &&
-                Objects.equals(creator, item.creator) &&
-                Objects.equals(origin, item.origin) &&
-                Objects.equals(content, item.content) &&
-                Objects.equals(collectAt, item.collectAt) &&
-                Objects.equals(publicationAt, item.publicationAt) &&
-                Objects.equals(topics, item.topics);
+        Post post = (Post) o;
+        return Objects.equals(title, post.title) &&
+                Objects.equals(uri, post.uri) &&
+                Objects.equals(creator, post.creator) &&
+                Objects.equals(origin, post.origin) &&
+                Objects.equals(content, post.content) &&
+                Objects.equals(collectAt, post.collectAt) &&
+                Objects.equals(publicationAt, post.publicationAt) &&
+                Objects.equals(topics, post.topics);
     }
 
     @Override
@@ -146,7 +145,7 @@ public class Item implements Cloneable {
 
     @Override
     public String toString() {
-        return "Item{" +
+        return "Post{" +
                 "title='" + title + '\'' +
                 ", uri='" + uri + '\'' +
                 ", creator='" + creator + '\'' +
@@ -177,14 +176,14 @@ public class Item implements Cloneable {
     @Override
     public Object clone() {
         try {
-            return (Item) super.clone();
+            return (Post) super.clone();
         } catch (CloneNotSupportedException e) {
-            return new Item(this.getId(), this.getTitle(), this.getUri(), this.getCreator(), this.getOrigin(),
+            return new Post(this.getId(), this.getTitle(), this.getUri(), this.getCreator(), this.getOrigin(),
                     this.getContent(), this.getCollectAt(), this.getPublicationAt(), this.getTopics());
         }
     }
 
-    public static class ItemBuilder {
+    public static class PostBuilder {
         private String title;
         private String uri;
         private String creator;
@@ -194,48 +193,48 @@ public class Item implements Cloneable {
         private Date publicationAt;
         private Set<Topic> topics;
 
-        public ItemBuilder withTitle(String title) {
+        public PostBuilder withTitle(String title) {
             this.title = title;
             return this;
         }
 
-        public ItemBuilder withUri(String uri) {
+        public PostBuilder withUri(String uri) {
             this.uri = uri;
             return this;
         }
 
-        public ItemBuilder withCreator(String creator) {
+        public PostBuilder withCreator(String creator) {
             this.creator = creator;
             return this;
         }
 
-        public ItemBuilder withOrigin(Feed origin) {
+        public PostBuilder withOrigin(Feed origin) {
             this.origin = origin;
             return this;
         }
 
-        public ItemBuilder withContent(String content) {
+        public PostBuilder withContent(String content) {
             this.content = content;
             return this;
         }
 
-        public ItemBuilder withCollectAt(Date collectAt) {
+        public PostBuilder withCollectAt(Date collectAt) {
             this.collectAt = collectAt;
             return this;
         }
 
-        public ItemBuilder withPublicationAt(Date publicationAt) {
+        public PostBuilder withPublicationAt(Date publicationAt) {
             this.publicationAt = publicationAt;
             return this;
         }
 
-        public ItemBuilder withTopics(Set<Topic> topics) {
+        public PostBuilder withTopics(Set<Topic> topics) {
             this.topics = topics;
             return this;
         }
 
-        public Item createItem() {
-            return new Item(null, title, uri, creator, origin, content, collectAt, publicationAt, topics);
+        public Post createPost() {
+            return new Post(null, title, uri, creator, origin, content, collectAt, publicationAt, topics);
         }
     }
 }

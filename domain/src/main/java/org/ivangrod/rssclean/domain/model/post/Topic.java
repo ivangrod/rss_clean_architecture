@@ -1,7 +1,7 @@
-package org.ivangrod.rssclean.domain.model.item;
+package org.ivangrod.rssclean.domain.model.post;
 
 /**
- * Value Object (part of Item aggregate)
+ * Value Object (part of Post aggregate)
  */
 public class Topic {
 
@@ -21,8 +21,6 @@ public class Topic {
 
     @Override
     public String toString() {
-        return "Topic{" +
-                "tag='" + tag + '\'' +
-                '}';
+        return "Topic{" + "tag='" + tag + '\'' + '}';
     }
 }
