@@ -19,17 +19,17 @@ public class BeanInitializr {
     }
 
     @Bean
-    public CreatePost createPost(PostCollection postCollection, DomainEventPublisher domainEventPublisher) {
-        return new CreatePost(postCollection, domainEventPublisher);
+    public CreatePost createPost(PostCollection mongoDBPostCollection, DomainEventPublisher domainEventPublisher) {
+        return new CreatePost(mongoDBPostCollection, domainEventPublisher);
     }
 
     @Bean
-    public RetrievePosts retrievePosts(PostCollection postCollection, DomainEventPublisher domainEventPublisher) {
-        return new RetrievePosts(postCollection, domainEventPublisher);
+    public RetrievePosts retrievePosts(PostCollection mongoDBPostCollection, DomainEventPublisher domainEventPublisher) {
+        return new RetrievePosts(mongoDBPostCollection, domainEventPublisher);
     }
 
     @Bean
-    public StorePost storePost(PostCollection postCollection, DomainEventPublisher domainEventPublisher) {
-        return new StorePost(postCollection, domainEventPublisher);
+    public StorePost storePost(PostCollection elasticPostCollection, DomainEventPublisher domainEventPublisher) {
+        return new StorePost(elasticPostCollection, domainEventPublisher);
     }
 }
