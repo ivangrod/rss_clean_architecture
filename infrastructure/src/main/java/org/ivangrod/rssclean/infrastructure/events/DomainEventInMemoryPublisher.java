@@ -21,6 +21,8 @@ public class DomainEventInMemoryPublisher implements DomainEventPublisher {
     @Autowired
     private PostStatusSubscriber postStatusSubscriber;
 
+    // TODO Include different types of subscribers
+
     private List<DomainEventSubscriber> subscribers;
 
     public DomainEventInMemoryPublisher() {

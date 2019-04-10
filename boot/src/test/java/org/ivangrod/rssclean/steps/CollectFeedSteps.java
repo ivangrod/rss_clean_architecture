@@ -1,7 +1,6 @@
 package org.ivangrod.rssclean.steps;
 
 import com.google.common.io.Resources;
-import com.rometools.rome.io.SyndFeedInput;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -18,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
 
 public class CollectFeedSteps extends AbstractStepsConfiguration {
 
@@ -33,8 +31,6 @@ public class CollectFeedSteps extends AbstractStepsConfiguration {
 
     @Autowired
     private FeedListener feedListener;
-
-    private SyndFeedInput feedInput = mock(SyndFeedInput.class);
 
     @Autowired
     private World world;
@@ -70,7 +66,6 @@ public class CollectFeedSteps extends AbstractStepsConfiguration {
     }
 
     class MockFeed extends Feed {
-
         public MockFeed(String fileName, String source) {
             super(Resources.getResource(fileName), source);
         }
