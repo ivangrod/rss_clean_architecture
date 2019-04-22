@@ -1,7 +1,11 @@
 package org.ivangrod.rssclean.infrastructure.repositories.config;
 
+import org.apache.http.Header;
+import org.apache.http.HttpHeaders;
 import org.apache.http.HttpHost;
+import org.apache.http.message.BasicHeader;
 import org.elasticsearch.client.RestClient;
+import org.elasticsearch.client.RestClientBuilder;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -15,7 +19,15 @@ public class ElasticConfig {
 
     @Bean(destroyMethod = "close")
     public RestHighLevelClient client() {
-        RestHighLevelClient client = new RestHighLevelClient(RestClient.builder(new HttpHost(elasticsearchHost)));
+
+        Header[] headers = { new BasicHeader(HttpHeaders.CONTENT_TYPE, "application/json")};
+
+        RestClientBuilder restClientBuilder = RestClient.builder(new HttpHost(elasticsearchHost, 9200, "http"));
+        restClientBuilder.setMaxRetryTimeoutMillis(3000); //Currently, set as default
+        restClientBuilder.setDefaultHeaders(headers);
+
+
+        RestHighLevelClient client = new RestHighLevelClient(restClientBuilder);
         return client;
     }
 }

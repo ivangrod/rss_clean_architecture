@@ -3,4 +3,4 @@ spring.data.mongodb:
   uri: mongodb://localhost:27017 # Mongo database URI. Cannot be set with host, port and credentials.
 
 elasticsearch:
-  host: http://127.0.0.1:9200
+  host: localhost
