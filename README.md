@@ -1,6 +1,6 @@
 # rss_clean
 
-The RSS Clean Architecture is a demo that shows a process to collect information of many posts from Nertflix tech blog.
+The RSS Clean Architecture is a demo that shows a process to collect information of many posts from Netflix tech blog.
 
 The project imports, normalizes and stores this information following an implementation of Clean Architecture.
 
